@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<center>
+{%if user.is_authenticated %}
+    <h3>create venue</h3><br>
+    {% if submitted %}
+        <H2>sucessedddddddddddd</H2>
+    {% else %}
+        <div class="container">
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                
+                <input type="submit" value="Submit" class="btn btn-secondary">
+            </form>
+        </div>
+    {% endif %}
+{% else %}
+<h1>sorry you must <a href="{% url 'login' %}">login</a> to view this page... </h1>
+{% endif %}
+</center>
+{% endblock %}

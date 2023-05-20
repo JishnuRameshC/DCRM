@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    {% if searched %}
+        <h1> you search for {{searched}}</h1>
+        
+        <div class="container">
+            <ol class="list-group list-group-numbered">
+                {% for i in venue %}
+                    <table class="table  table-hover  table-striped-columns">
+                        <tr>
+                            <td class="align-middle" ><a href="{% url 'show-venue' i.id %}"> {{i}}</a></td>
+                        </tr>
+                    </table>
+                {% endfor %}
+            </ol>
+            
+
+
+
+        </div>
+
+
+
+    {% else %}
+        <h1>search any ..</h1>
+    {% endif %}
+    
+
+</div>
+{% endblock %}

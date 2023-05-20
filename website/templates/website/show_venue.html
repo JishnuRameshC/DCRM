@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>venue:</h1>
+
+<ol class="list-group ">
+    <li class="list-group-item list-group-item-dark">{{venue.name}}</li>
+    <li class="list-group-item list-group-item-dark">{{venue.address}}</li>
+    <li class="list-group-item list-group-item-dark">{{venue.zipcode}}</li>
+    <li class="list-group-item list-group-item-dark">{{venue.phone}}</li>
+    <li class="list-group-item list-group-item-dark">{{venue.web}}</li>
+    <li class="list-group-item list-group-item-dark">{{venue.email}}</li>
+    <li class="list-group-item list-group-item-dark">owner       :{{venue_owner}}</li>
+    <li class="list-group-item list-group-item-dark">owner email :{{venue_owner.email }}</li>
+
+  </ol>
+{% endblock %}
