@@ -3,7 +3,7 @@
 ### DCRM - Event Venue Management System
 DCRM is a web-based application developed using Python and the Django framework. It allows users to manage event venues, including adding and updating venues, organizing events, generating PDF and CSV reports, and searching for venues.
 
-**Technologies used:** Python, Django, HTML/CSS, JavaScript, ReportLab, CSV.
+**Technologies used:** Python, Django, HTML/CSS.
 
 **Responsibilities:**
 - Developed the backend logic using Python and Django.
