@@ -150,6 +150,8 @@ def list_venue(request):
     return render(request,'website/venue.html',{'venue':venue})
 
 
+def my_event(request):
+    return render(request,'website/my_event.html',{})
 def add_venue(request):
     submitted = False
     if request.method == "POST":
