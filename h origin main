@@ -1,0 +1,24 @@
+[33mcommit b9aeb30d3e544481fcba2e43596b3aeec3e242d8[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: jishnu ramesh c <jishnurameshc@gmail.com>
+Date:   Sun May 21 07:30:50 2023 +0530
+
+    adding my events
+
+[33mcommit af396d7ead0e5ec2f1c9b6f002e8eaac6fe01967[m
+Merge: df5aedf 45b946e
+Author: jishnu ramesh c <jishnurameshc@gmail.com>
+Date:   Sat May 20 19:47:53 2023 +0530
+
+    Merge remote-tracking branch 'origin/JishnuRameshC'
+
+[33mcommit df5aedfbfc39c7ea6674aa292738b9e870871e78[m
+Author: jishnu ramesh c <jishnurameshc@gmail.com>
+Date:   Sat May 20 19:03:02 2023 +0530
+
+    first
+
+[33mcommit 45b946e8a025e949b856e814cea877335e9ba47c[m
+Author: Jishnu ramesh c <jishnurameshc@gmail.com>
+Date:   Sat May 20 18:17:45 2023 +0530
+
+    Initial commit
