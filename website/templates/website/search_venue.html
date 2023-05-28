@@ -3,7 +3,6 @@
 
     {% if searched %}
         <h1> you search for {{searched}}</h1>
-        
         <div class="container">
             <ol class="list-group list-group-numbered">
                 {% for i in venue %}
@@ -14,18 +13,9 @@
                     </table>
                 {% endfor %}
             </ol>
-            
-
-
-
         </div>
-
-
-
     {% else %}
         <h1>search any ..</h1>
     {% endif %}
-    
-
 </div>
 {% endblock %}

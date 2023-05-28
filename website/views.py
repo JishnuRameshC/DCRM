@@ -201,7 +201,7 @@ def search_event(request):
 
 
 def home(request,year=datetime.now().year,month= datetime.now().strftime('%B')):
-    name = 'jishnu '
+    name = request.user.username
     month = month.capitalize()
     month_number = list(calendar.month_name).index(month)
     month_number = int (month_number)

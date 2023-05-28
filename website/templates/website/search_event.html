@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 
-<form role="search" method="GET" action="{% url 'search-event' %}">
+<form role="search" method="GET" action="{% url 'search_event' %}">
   {% csrf_token %}
   <input
     class="form-control me-2"
