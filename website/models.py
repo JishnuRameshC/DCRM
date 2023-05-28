@@ -28,7 +28,7 @@ class Event(models.Model):
     manager = models.ForeignKey(User,on_delete= models.SET_NULL,null=True, blank=True)
     description = models.TextField(max_length=200, blank=True, null=True)
     participats = models.ManyToManyField(MyClubeUser,blank=True)
-
+    
     def __str__(self):
         return self.name
 

@@ -15,5 +15,7 @@ urlpatterns = [
     path('delete_venue/<venue_id>', views.delete_venue, name= 'delete-venue'),
     path('venue_txt_file', views.venue_txt_file, name= 'venue-txt-file'),
     path('venue_csv_file', views.venue_csv_file, name= 'venue-csv-file'),
-    path('venue_pdf_file', views.venue_pdf_file, name= 'venue-pdf-file'),
+    path('ven11ue_pdf_file', views.venue_pdf_file, name= 'venue-pdf-file'),
+    path('my_events',views.my_events, name = "my_events"),
+
 ]

@@ -173,6 +173,14 @@ def event(request):
     events = Event.objects.all()
     return render(request,'website/even_list.html',
                   { "event":events})
+def my_events(request):
+    if request.user.is_authenticated:
+        event = Event.objects.filter(participats =request.user.id)
+        return render(request,'website/my_event.html',{event:'event'})
+    else:
+        messages.success(request, "you aren't authenticated")
+        return redirect('home')
+
 
 def home(request,year=datetime.now().year,month= datetime.now().strftime('%B')):
     name = 'jishnu '
