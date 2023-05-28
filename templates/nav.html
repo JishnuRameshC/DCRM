@@ -9,8 +9,6 @@
        <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{%url 'home' '2023' 'april'%}">Date</a>
         </li>
-
-        
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Event
@@ -20,7 +18,8 @@
             {% if user.is_authenticated %}
             <li><a class="dropdown-item" href="{% url 'add-event'%}">Add Event</a></li>  
             <li><a class="dropdown-item" href="{% url 'my_events'%}">My Event</a></li>  
-            {% endif %}        
+            {% endif %}   
+            <li><a class="dropdown-item" href="{% url 'search-event'%}">Search Event</a></li>       
           </ul>
         </li>
 
@@ -65,10 +64,6 @@
           <input class="form-control me-2" type="search" placeholder="Search venue" name="searched" aria-label="Search" >
           <button class="btn btn-outline-secondary" type="submit">Search</button>
         </form>
-        
-       
-      
-      
     </div>
   </div>
 </nav>

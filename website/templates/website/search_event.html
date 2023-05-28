@@ -1,27 +1,35 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
-    {% if searched %}
-        <h1> you search for {{searched}}</h1>
-        
-        <div class="container">
-            <ol class="list-group list-group-numbered">
-                {% for i in venue %}
-                    <table class="table  table-hover  table-striped-columns">
-                        <tr>
-                            <td class="align-middle" ><a href="{% url 'show-venue' i.id %}"> {{i}}</a></td>
-                        </tr>
-                    </table>
-                {% endfor %}
-            </ol>
-        </div>
+<form role="search" method="GET" action="{% url 'search-event' %}">
+  {% csrf_token %}
+  <input
+    class="form-control me-2"
+    type="search"
+    placeholder="Search event"
+    name="searched"
+    aria-label="Search"
+  /><br />
+  <button class="btn btn-outline-secondary" type="submit">Search</button>
+</form>
 
-
-
-    {% else %}
-        <h1>search any ..</h1>
-    {% endif %}
-    
-
+{% if searched %}
+<h1>You searched for "{{ searched }}"</h1>
+{% if events %}
+<div class="container">
+  <ol class="list-group list-group-numbered">
+    {% for event in events %}
+    <table class="table table-hover table-striped-columns">
+      <tr>
+        <td class="align-middle">
+          <a href="{% url 'show-event' event.id %}">{{ event.name }}</a>
+        </td>
+      </tr>
+    </table>
+    {% endfor %}
+  </ol>
 </div>
-{% endblock %}
+{% else %}
+<p>No events found.</p>
+{% endif %} {% else %}
+<h1>Search for events</h1>
+{% endif %} {% endblock %}

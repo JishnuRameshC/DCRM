@@ -12,13 +12,15 @@ from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
 # imort user model in django
 from django.contrib.auth.models import User
+
+
+# Generate a PDF file with venue details
 def venue_pdf_file(request):
     buf = io.BytesIO()
     c = canvas.Canvas(buf,pagesize=letter,bottomup=0)
     textob = c.beginText()
     textob.setTextOrigin(inch,inch)
     textob.setFont('Helvetica',15)
-
     lines = []
     venues = Venue.objects.all()
     for venue in venues:
@@ -32,10 +34,8 @@ def venue_pdf_file(request):
         lines.append('_____________________________________________________________')
         lines.append('')
 
-
     for line in lines:
         textob.textLine(line)
-    
 
     c.drawText(textob)
     c.showPage()
@@ -43,6 +43,8 @@ def venue_pdf_file(request):
     buf.seek(0)
     return FileResponse(buf,as_attachment=True, filename='venue.pdf')
 
+
+# Generate a CSV file with venue details
 def venue_csv_file(request):
     response = HttpResponse(content_type = 'text/csv')
     response['Content-Disposition'] = 'attachement;filename= venue.csv'
@@ -51,22 +53,22 @@ def venue_csv_file(request):
     writer.writerow(['venue name', 'address','zipcode','phone','web','email',])
     for venue in venues:
         writer.writerow([venue.name,venue.address,venue.zipcode, venue.phone, venue.web,venue.email])
-    
     return response 
 
 
+# Generate a TXT file with venue details
 def venue_txt_file(request):
     response = HttpResponse(content_type = 'text/plain')
     response['Content-Disposition'] = 'attachement;filename= venue.txt'
-    # line =['hello world\n', 'mf']
     venues = Venue.objects.all()
     line = [ ]
     for venue in venues:
         line.append(f'{venue.name}\n{venue.address}\n{venue.zipcode}\n{venue.phone}\n{venue.web}\n{venue.email}\n\n\n\n')
-    
     response.writelines(line)
     return response
 
+
+# Delete an event
 def delete_event(request,event_id):
     event = Event.objects.get(pk=event_id)
     if request.user == event.manager:
@@ -77,16 +79,19 @@ def delete_event(request,event_id):
         messages.succes(request('you are not auterized to delete this event'))
         return redirect('event')
 
+
+# Delete a venue
 def delete_venue(request,venue_id):
     venue = Venue.objects.get(pk=venue_id)
     venue.delete()
     return redirect('list-venue')
 
+
+# Update an event
 def update_event(request, event_id):
     venue = Event.objects.get(pk = event_id )
     if request.user.is_superuser:
         form = EventFormAdmin(request.POST or None, instance=venue)
-
     else:
         form = EventForm(request.POST or None, instance=venue)
     if form.is_valid():
@@ -95,6 +100,7 @@ def update_event(request, event_id):
     return render(request,'website/update_event.html',{'event':venue, 'form':form})
 
 
+#  Add an event
 def add_event(request):
     submitted = False
     if request.method == "POST":
@@ -121,6 +127,7 @@ def add_event(request):
     return render (request,'website/add_event.html',{'form':form,'submitted':submitted})
 
 
+# Update a venue
 def update_venue(request, venue_id):
     venue = Venue.objects.get(pk = venue_id )
     form = VenueForm(request.POST or None, instance=venue)
@@ -130,6 +137,7 @@ def update_venue(request, venue_id):
     return render(request,'website/update_venue.html',{'venue':venue, 'form':form})
 
 
+# Search for a venue
 def search_venue(request):
     if request.method == 'POST':
         searched = request.POST['searched']
@@ -137,6 +145,7 @@ def search_venue(request):
         return render(request,'website/search_venue.html',{'searched':searched,'venue':venue})
     else:
         return render(request,'website/search_venue.html')
+
 
 def show_venue(request, venue_id):
     venue = Venue.objects.get(pk = venue_id )
@@ -180,6 +189,15 @@ def my_events(request):
     else:
         messages.success(request, "you aren't authenticated")
         return redirect('home')
+
+
+def search_event(request):
+    if request.method == 'POST':
+        searched = request.POST['searched']
+        events = Event.objects.filter(name__contains = searched)
+        return render(request,'website/search_event.html',{'searched':searched,'events':events})
+    else:
+        return render(request,'website/search_event.html')
 
 
 def home(request,year=datetime.now().year,month= datetime.now().strftime('%B')):
